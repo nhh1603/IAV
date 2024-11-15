@@ -19,8 +19,8 @@ threshold = 0.5
 
 # data, trained model and output directories/filenames initialization
 test_dir = "./ms-coco/images/test-resized"
-trained_model = "./best_model.pth"
-output_json = "predictions.json"
+trained_model = "./trained_models/best_model_resnet18_lastblock.pth"
+output_json = "./predictions/predictions_resnet18_lastblock.json"
 
 # device initialization
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -28,7 +28,6 @@ print(f"Using device: {device}")
 
 # instantiation of transforms, dataset and data loader
 transform = transforms.Compose([transforms.ToTensor(),
-                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
                                 ResNet18_Weights.DEFAULT.transforms(antialias=True)])
 
 test_dataset = COCOTestImageDataset(test_dir, transform=transform)

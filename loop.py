@@ -6,10 +6,7 @@ def train_loop(train_loader, net, criterion, optimizer, device,
     net.train()
     running_loss = 0.0
     mbatch_losses = []
-    for i, data in enumerate(train_loader):
-        if i % 1000 == 0 and i > 0:
-            print(f"Batch {i}")
-            
+    for i, data in enumerate(train_loader):  
         inputs, labels = data[0].to(device), data[1].to(device)
         optimizer.zero_grad()
         outputs = net(inputs)
